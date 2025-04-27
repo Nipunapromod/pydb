@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 import os
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Change this to a random secret key
+app.secret_key = os.urandom(24)  # Change this to a random secret key for security
 
 # Database config
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')  # Heroku database
@@ -39,16 +39,19 @@ def register():
 
         # Check if password matches confirm password
         if password != confirm_password:
-            return "Passwords do not match."
+            flash("Passwords do not match.", 'danger')
+            return redirect(url_for('register'))
 
         # Check if username or email already exists
         existing_user = User.query.filter_by(username=username).first()
         existing_email = User.query.filter_by(email=email).first()
         
         if existing_user:
-            return "Username already taken."
+            flash("Username already taken.", 'danger')
+            return redirect(url_for('register'))
         if existing_email:
-            return "Email already registered."
+            flash("Email already registered.", 'danger')
+            return redirect(url_for('register'))
 
         # Hash the password
         hashed_pw = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -59,9 +62,11 @@ def register():
         try:
             db.session.add(new_user)
             db.session.commit()
+            flash("Registration successful. Please login.", 'success')
             return redirect(url_for('login'))
         except:
-            return "Error in registration."
+            flash("An error occurred. Please try again.", 'danger')
+            return redirect(url_for('register'))
 
     return render_template('register.html')
 
@@ -76,9 +81,11 @@ def login():
 
         if user and bcrypt.check_password_hash(user.password, password):
             session['user_id'] = user.id
+            flash("Login successful.", 'success')
             return redirect(url_for('home'))
         else:
-            return "Invalid email/username or password."
+            flash("Invalid email/username or password.", 'danger')
+            return redirect(url_for('login'))
 
     return render_template('login.html')
 
@@ -86,6 +93,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
+    flash("You have been logged out.", 'info')
     return redirect(url_for('login'))
 
 # Only run locally
