@@ -4,15 +4,18 @@ from flask_bcrypt import Bcrypt
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)  # Change this to a random secret key for security
+app.secret_key = os.urandom(24)
 
-# Database config
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')  # Heroku database
+# Fix Heroku Postgres URL
+database_url = os.environ.get('DATABASE_URL')
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-
 # Database model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
