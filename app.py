@@ -27,7 +27,7 @@ class User(db.Model):
 @app.route('/')
 def home():
     if 'user_id' in session:
-        return render_template('home.html')
+        return render_template('mainhome.html')  # Changed from 'home.html' to 'mainhome.html'
     else:
         return redirect(url_for('login'))
 
