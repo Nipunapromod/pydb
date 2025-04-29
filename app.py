@@ -82,7 +82,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, password):
             session['user_id'] = user.id
             flash("Login successful.", 'success')
-            return redirect(url_for('home'))
+            return render_template('home.html')  # Redirect to 'home.html' after successful login
         else:
             flash("Invalid email/username or password.", 'danger')
             return redirect(url_for('login'))
