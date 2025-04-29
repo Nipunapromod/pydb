@@ -80,12 +80,15 @@ def login():
         user = User.query.filter((User.email == login_input) | (User.username == login_input)).first()
 
         if not user:
-            flash("No account found with the provided email/username.", 'danger')
-            return redirect(url_for('login'))
-
+            error = "No account found with the provided email/username."
+            return render_template('login.html', error=error)
+<!-- Inside login.html -->
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% endif %}
         if not bcrypt.check_password_hash(user.password, password):
-            flash("Incorrect password. Please try again.", 'danger')
-            return redirect(url_for('login'))
+            error = "Incorrect password. Please try again."
+            return render_template('login.html', error=error)
 
         session['user_id'] = user.id
         flash("Login successful.", 'success')
