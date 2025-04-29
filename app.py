@@ -26,10 +26,7 @@ class User(db.Model):
 # Home page
 @app.route('/')
 def home():
-    if 'user_id' in session:
-        return render_template('home.html')  # Corrected to 'mainhome.html'
-    else:
-        return redirect(url_for('login'))
+    return render_template('mainhome.html')  # Always display 'mainhome.html' first
 
 # Register page
 @app.route('/register', methods=['GET', 'POST'])
