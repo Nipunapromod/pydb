@@ -5,6 +5,149 @@
     <meta charset="UTF-8">
     <title>Main Home</title>
     <link rel="stylesheet" href="style">
+    <style>
+        
+/* Advanced CSS for all elements */
+
+/* Smooth font rendering and universal box-sizing */
+html {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    scroll-behavior: smooth;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* Responsive body with gradient background */
+body {
+    min-height: 100vh;
+    background: 
+        radial-gradient(circle at 0% 0%, #ff0000 0%, transparent 18%),
+        radial-gradient(circle at 100% 0%, #00ff6a 0%, transparent 18%),
+        radial-gradient(circle at 0% 100%, #00ff6a 0%, transparent 18%),
+        radial-gradient(circle at 100% 100%, #ff000080 0%, transparent 18%),
+#000;
+    color: #f5f5f5;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Stylish headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #00ff88;
+    letter-spacing: 1px;
+    margin-bottom: 0.5em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.border{
+    border: 2px solid #00ff88;
+    padding: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+
+/* Advanced link styles */
+a {
+    color: #00ff88;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: inline-block;
+    position: relative;
+    padding: 2px 4px;
+    margin-top: 10px;
+}
+a:hover, a:focus {
+    color: #fff;
+    transform: scale(1.12);
+    box-shadow: 0 2px 12px #00ff8855;
+    outline: none;
+}
+
+/* Button-style links */
+button {
+    padding: 14px 36px;
+    font-size: 1.15rem;
+    margin-left: 5500px;
+    background: linear-gradient(90deg, #ff0000 0%, #00ff88 100%);
+    color: #fff;
+    border-radius: 8px;
+    border: 2px solid #00ff88;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 16px #ff000044;
+    transition: background 0.4s, transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+button:hover {
+    background: linear-gradient(90deg, #00ff403c 0%, #00ff2f74 100%);
+    transform: scale(1.08);
+    border-color: #fff;
+    box-shadow: 0 4px 20px #2fff0078;
+    outline: none;
+}
+
+/* Animated underline for all links */
+a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #00ff88;
+    transition: width 0.3s;
+    border-radius: 2px;
+    margin-top: 2px;
+}
+a:hover::after, a:focus::after {
+    width: 100%;
+}
+
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    background: #000000;
+}
+::-webkit-scrollbar-thumb {
+    background: #00ff88;
+    border-radius: 8px;
+}
+
+/* Inputs and forms */
+input, select, textarea, button {
+    font-family: inherit;
+    font-size: 1em;
+    border-radius: 4px;
+    border: 1px solid #00ff88;
+    padding: 0.5em 1em;
+    margin: 1px;
+    background: #000000;
+    color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus, textarea:focus, button:focus {
+    border-color: #fff;
+    box-shadow: 0 0 8px #00ff88;
+    outline: none;
+}
+
+/* Utility classes */
+.mt-2 { margin-top: 2em; }
+.mb-2 { margin-bottom: 2em; }
+.p-2 { padding: 2em; }
+.text-center { text-align: center; }
+.rounded { border-radius: 12px; }
+.shadow { box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+    </style>
 </head>
 
 <body>
