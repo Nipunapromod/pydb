@@ -29,7 +29,7 @@ def home():
     if 'user_id' in session:
         return render_template('home.html')
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('mainhome'))
 
 # Register page
 @app.route('/register', methods=['GET', 'POST'])
