@@ -164,7 +164,7 @@ input:focus, select:focus, textarea:focus, button:focus {
             <input type="email" name="email" placeholder="Email" required><br><br>
             <input type="password" id="password" name="password" placeholder="Password" 
                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br>
-            <div class="password-rules">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.</div>
+            <div id="password-rules" class="password-rules" style="display: none;">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.</div>
             <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" 
                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br><br>
             <div id="password-strength" style="margin-bottom: 10px; color: #00ff88;">Password Strength: <span>Weak</span></div>
@@ -178,6 +178,7 @@ input:focus, select:focus, textarea:focus, button:focus {
     <script>
     const passwordInput = document.getElementById('password');
     const strengthIndicator = document.getElementById('password-strength').querySelector('span');
+    const passwordRules = document.getElementById('password-rules');
 
     passwordInput.addEventListener('input', () => {
         const value = passwordInput.value;
@@ -189,6 +190,7 @@ input:focus, select:focus, textarea:focus, button:focus {
         }
         strengthIndicator.textContent = strength;
         strengthIndicator.style.color = strength === 'Weak' ? '#00ff88' : '#f5f5f5'; // Green for Weak, default for others
+        passwordRules.style.display = strength === 'Weak' ? 'block' : 'none'; // Show rules only if Weak
     });
     </script>
 </body>
