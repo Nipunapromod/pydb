@@ -155,8 +155,15 @@ input:focus, select:focus, textarea:focus, button:focus {
         <form method="POST">
             <input type="text" name="username" placeholder="Username" required><br><br>
             <input type="email" name="email" placeholder="Email" required><br><br>
-            <input type="password" name="password" placeholder="Password" required><br><br>
-            <input type="password" name="confirm_password" placeholder="Confirm Password" required><br><br>
+            <input type="password" name="password" placeholder="Password" 
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                   title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number." 
+                   required><br><br>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" 
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                   title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number." 
+                   required><br><br>
+            <small>Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.</small><br><br>
             <center><button type="submit">Register</button></center>
         </form>
         <p>Already have an account? <a href="/login">Login</a></p>
