@@ -162,8 +162,11 @@ input:focus, select:focus, textarea:focus, button:focus {
         <form method="POST">
             <input type="text" name="username" placeholder="Username" required><br><br>
             <input type="email" name="email" placeholder="Email" required><br><br>
-            <input type="password" id="password" name="password" placeholder="Password" 
-                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br>
+            <div style="position: relative; display: inline-block;">
+                <input type="password" id="password" name="password" placeholder="Password" 
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                <button type="button" id="toggle-password" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #00ff88;">Show</button>
+            </div>
             <div id="password-rules" class="password-rules" style="display: none;">Password must be at least 8 characters long,<br> contain at least one uppercase letter,<br> one lowercase letter, and one number.</div><br>
             <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" 
                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br><br>
@@ -177,8 +180,15 @@ input:focus, select:focus, textarea:focus, button:focus {
     </center>
     <script>
     const passwordInput = document.getElementById('password');
+    const togglePasswordButton = document.getElementById('toggle-password');
     const strengthIndicator = document.getElementById('password-strength').querySelector('span');
     const passwordRules = document.getElementById('password-rules');
+
+    togglePasswordButton.addEventListener('click', () => {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        togglePasswordButton.textContent = type === 'password' ? 'Show' : 'Hide';
+    });
 
     passwordInput.addEventListener('input', () => {
         const value = passwordInput.value;
