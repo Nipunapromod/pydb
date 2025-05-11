@@ -174,8 +174,11 @@ input:focus, select:focus, textarea:focus, button:focus {
                 <i class="bi bi-eye-slash" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
             </div>
             <div id="password-rules" class="password-rules" style="display: none;">Password must be at least 8 characters long,<br> contain at least one uppercase letter,<br> one lowercase letter, and one number.</div><br>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" 
-                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br><br>
+            <div style="position: relative; display: inline-block;">
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" 
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                <i class="bi bi-eye-slash" id="toggleConfirmPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
+            </div><br>
             <div id="password-strength" style="margin-bottom: 10px; color: #00ff88;">Password Strength: <span>Weak</span></div>
             <center><button type="submit">Register</button></center>
         </form>
@@ -187,10 +190,19 @@ input:focus, select:focus, textarea:focus, button:focus {
     <script>
     const togglePassword = document.querySelector('#togglePassword');
     const password = document.querySelector('#password');
+    const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+    const confirmPassword = document.querySelector('#confirm_password');
+
     togglePassword.addEventListener('click', () => {
         const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
         password.setAttribute('type', type);
         togglePassword.classList.toggle('bi-eye');
+    });
+
+    toggleConfirmPassword.addEventListener('click', () => {
+        const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPassword.setAttribute('type', type);
+        toggleConfirmPassword.classList.toggle('bi-eye');
     });
 
     password.addEventListener('input', () => {
