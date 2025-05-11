@@ -144,6 +144,13 @@ input:focus, select:focus, textarea:focus, button:focus {
 .text-center { text-align: center; }
 .rounded { border-radius: 12px; }
 .shadow { box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+.password-rules {
+        color: #00ff88;
+        font-size: 0.9rem;
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
     </style>
 </head>
 
@@ -155,14 +162,12 @@ input:focus, select:focus, textarea:focus, button:focus {
         <form method="POST">
             <input type="text" name="username" placeholder="Username" required><br><br>
             <input type="email" name="email" placeholder="Email" required><br><br>
-            <input type="password" name="password" placeholder="Password" 
-                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                   title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number." 
-                   required><br><br>
-            <input type="password" name="confirm_password" placeholder="Confirm Password" 
-                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                   title="Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number." 
-                   required><br><br>
+            <input type="password" id="password" name="password" placeholder="Password" 
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br>
+            <div class="password-rules">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.</div>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" 
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br><br>
+            <div id="password-strength" style="margin-bottom: 10px; color: #00ff88;">Password Strength: <span>Weak</span></div>
             <center><button type="submit">Register</button></center>
         </form>
         <p>Already have an account? <a href="/login">Login</a></p>
@@ -170,6 +175,22 @@ input:focus, select:focus, textarea:focus, button:focus {
     <center>
         <p>Created By Nipuna®</p>
     </center>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const strengthIndicator = document.getElementById('password-strength').querySelector('span');
+
+        passwordInput.addEventListener('input', () => {
+            const value = passwordInput.value;
+            let strength = 'Weak';
+            if (value.length >= 8 && /[A-Z]/.test(value) && /[a-z]/.test(value) && /\d/.test(value)) {
+                strength = 'Strong';
+            } else if (value.length >= 6 && (/[A-Z]/.test(value) || /[a-z]/.test(value)) && /\d/.test(value)) {
+                strength = 'Medium';
+            }
+            strengthIndicator.textContent = strength;
+            strengthIndicator.style.color = strength === 'Strong' ? '#00ff88' : strength === 'Medium' ? '#ffcc00' : '#ff0000';
+        });
+    </script>
 </body>
 
 </html>
