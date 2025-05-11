@@ -176,20 +176,20 @@ input:focus, select:focus, textarea:focus, button:focus {
         <p>Created By Nipuna®</p>
     </center>
     <script>
-        const passwordInput = document.getElementById('password');
-        const strengthIndicator = document.getElementById('password-strength').querySelector('span');
+    const passwordInput = document.getElementById('password');
+    const strengthIndicator = document.getElementById('password-strength').querySelector('span');
 
-        passwordInput.addEventListener('input', () => {
-            const value = passwordInput.value;
-            let strength = 'Weak';
-            if (value.length >= 8 && /[A-Z]/.test(value) && /[a-z]/.test(value) && /\d/.test(value)) {
-                strength = 'Strong';
-            } else if (value.length >= 6 && (/[A-Z]/.test(value) || /[a-z]/.test(value)) && /\d/.test(value)) {
-                strength = 'Medium';
-            }
-            strengthIndicator.textContent = strength;
-            strengthIndicator.style.color = strength === 'Strong' ? '#00ff88' : strength === 'Medium' ? '#ffcc00' : '#ff0000';
-        });
+    passwordInput.addEventListener('input', () => {
+        const value = passwordInput.value;
+        let strength = 'Weak';
+        if (value.length >= 8 && /[A-Z]/.test(value) && /[a-z]/.test(value) && /\d/.test(value)) {
+            strength = 'Strong';
+        } else if (value.length >= 6 && (/[A-Z]/.test(value) || /[a-z]/.test(value)) && /\d/.test(value)) {
+            strength = 'Medium';
+        }
+        strengthIndicator.textContent = strength;
+        strengthIndicator.style.color = strength === 'Weak' ? '#00ff88' : '#f5f5f5'; // Green for Weak, default for others
+    });
     </script>
 </body>
 
