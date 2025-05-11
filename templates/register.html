@@ -198,7 +198,7 @@
 
         .password-strength{
             margin-bottom: 10px; color: #00ff8800;
-            font-size: smaller;
+            font-size: 5px;
 
         }
     </style>
@@ -220,10 +220,10 @@
             </div>
             <div id="password-rules" class="password-rules" style="display: none;">Password must be at least 8
                 characters long,<br> contain at least one uppercase letter,<br> one lowercase letter, and one number.
-            </div><br><br>
+            </div>
             <div id="password-strength">Password Strength:
                 <span>Weak</span></div>
-            <div style="position: relative; display: inline-block;">
+            <div style="position: relative; display: inline-block;"><br>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password"
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                 <i class="bi bi-eye-slash" id="toggleConfirmPassword"
